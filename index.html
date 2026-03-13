@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Zoom Optique | Luxe & Précision</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <style>
+        :root {
+            --gris-noir: #1A1A1A;
+            --orange-luxe: #FF6600;
+            --blanc-pur: #FFFFFF;
+            --gris-fond: #F4F7F6;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--gris-fond); color: var(--gris-noir); line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* --- NAVIGATION --- */
+        header { position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 2px solid var(--orange-luxe); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--gris-noir); text-decoration: none; }
+        .logo span { color: var(--orange-luxe); }
+        .nav-links a { text-decoration: none; color: var(--gris-noir); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; margin-left: 20px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--orange-luxe); }
+
+        /* --- HERO --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('clario-20.png.jpeg') center/cover no-repeat;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: white; margin-top: 60px;
+        }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); margin-bottom: 15px; }
+        .btn-rdv { background: var(--orange-luxe); color: white; padding: 15px 35px; text-decoration: none; font-weight: bold; border-radius: 5px; transition: var(--transition); display: inline-block; }
+        .btn-rdv:hover { transform: scale(1.05); background: white; color: var(--orange-luxe); }
+
+        /* --- COLLECTION (Générée par JS) --- */
+        .section { padding: 80px 8%; text-align: center; }
+        .section-title { font-size: 2.5rem; margin-bottom: 40px; }
+        .collection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; border-bottom: 4px solid transparent; transition: var(--transition); }
+        .card:hover { border-color: var(--orange-luxe); transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 150px; object-fit: contain; margin-bottom: 15px; }
+
+        /* --- FORMULAIRE --- */
+        .rdv-section { background: var(--gris-noir); color: white; padding: 80px 8%; }
+        .form-container { max-width: 600px; margin: auto; display: grid; gap: 15px; }
+        input, select { padding: 15px; border: 1px solid #444; background: #2A2A2A; color: white; border-radius: 4px; }
+        .btn-send { background: #25D366; color: white; border: none; padding: 18px; font-weight: bold; cursor: pointer; font-size: 1rem; transition: var(--transition); }
+        .btn-send:hover { background: #1ebd5b; }
+
+        /* --- CHATBOT --- */
+        .chat-btn { position: fixed; bottom: 30px; left: 30px; background: var(--orange-luxe); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; z-index: 1000; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .chat-box { position: fixed; bottom: 100px; left: 30px; width: 300px; background: white; border-radius: 10px; display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 1000; overflow: hidden; }
+        .chat-header { background: var(--gris-noir); color: white; padding: 15px; font-weight: bold; }
+        .chat-body { padding: 15px; font-size: 0.9rem; }
+        .chat-option { background: var(--gris-fond); padding: 10px; margin-bottom: 5px; cursor: pointer; border-radius: 4px; transition: 0.2s; }
+        .chat-option:hover { background: #eee; border-left: 4px solid var(--orange-luxe); }
+
+        @media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 2.5rem; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">MEGA <span>ZOOM</span></a>
+            <div class="nav-links">
+                <a href="#collection">Collection</a>
+                <a href="#rdv">Rendez-vous</a>
+                <a href="https://instagram.com/mega.zoom_off" target="_blank">Instagram</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>Vision de Luxe</h1>
+            <p style="text-transform: uppercase; letter-spacing: 4px; margin-bottom: 25px;">Précision Optique Certifiée</p>
+            <a href="#rdv" class="btn-rdv">PRENDRE RDV MAINTENANT</a>
+        </div>
+    </section>
+
+    <section id="collection" class="section">
+        <h2 class="section-title">Collection <span style="color:var(--orange-luxe)">Clario</span></h2>
+        <div class="collection-grid" id="gallery">
+            </div>
+    </section>
+
+    <section id="rdv" class="rdv-section">
+        <h2 style="text-align:center; margin-bottom: 30px;">Prendre Rendez-vous</h2>
+        <form id="rdvForm" class="form-container">
+            <input type="text" id="nom" placeholder="Nom Complet" required>
+            <input type="tel" id="tel" value="+212" required>
+            <select id="motif">
+                <option>Examen de vue</option>
+                <option>Achat Lunettes</option>
+                <option>Lentilles</option>
+            </select>
+            <input type="date" id="date" required>
+            <button type="submit" class="btn-send"><i class="fab fa-whatsapp"></i> ENVOYER VIA WHATSAPP</button>
+        </form>
+    </section>
+
+    <div class="chat-btn" onclick="toggleChat()"><i class="fas fa-comment-dots"></i></div>
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">Conseiller Mega Zoom</div>
+        <div class="chat-body">
+            <p style="margin-bottom:10px">Bonjour ! Comment puis-je vous aider ?</p>
+            <div class="chat-option" onclick="askChat('Prix moyen ?')">💰 Prix moyen ?</div>
+            <div class="chat-option" onclick="askChat('Délai de livraison ?')">⏳ Délai de livraison ?</div>
+            <div class="chat-option" onclick="askChat('Localisation ?')">📍 Où êtes-vous situés ?</div>
+            <div id="chatResponse" style="margin-top:15px; font-weight:bold; color:var(--orange-luxe)"></div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Génération de la galerie Clario
+        const gallery = document.getElementById('gallery');
+        for(let i = 1; i <= 20; i++) {
+            const extension = (i <= 7) ? 'png.png' : 'png.jpeg';
+            gallery.innerHTML += `
+                <div class="card">
+                    <img src="clario-${i}.${extension}" alt="Clario ${i}">
+                    <h3>Clario ${i}</h3>
+                    <p style="color:#888; font-size:0.8rem">Collection Officielle</p>
+                </div>
+            `;
+        }
+
+        // 2. Logique Chatbot
+        function toggleChat() {
+            const box = document.getElementById('chatBox');
+            box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function askChat(question) {
+            const resp = document.getElementById('chatResponse');
+            const answers = {
+                'Prix moyen ?': "Nos montures Clario commencent à partir de 450 DH.",
+                'Délai de livraison ?': "Comptez 24h à 48h pour un montage standard.",
+                'Localisation ?': "Nous sommes à Rabat, Quartier Youssoufia."
+            };
+            resp.innerText = answers[question] || "Un opticien vous répondra sur WhatsApp.";
+        }
+
+        // 3. Envoi WhatsApp
+        document.getElementById('rdvForm').onsubmit = function(e) {
+            e.preventDefault();
+            const nom = document.getElementById('nom').value;
+            const motif = document.getElementById('motif').value;
+            const date = document.getElementById('date').value;
+            const text = `Bonjour Mega Zoom, je souhaite un RDV.\nNom: ${nom}\nMotif: ${motif}\nDate: ${date}`;
+            window.open(`https://wa.me/212752934107?text=${encodeURIComponent(text)}`, '_blank');
+        };
+
+        // 4. Animations au défilement
+        ScrollReveal().reveal('.card', { delay: 100, interval: 50, distance: '20px', origin: 'bottom' });
+    </script>
+
+</body>
+</html>
